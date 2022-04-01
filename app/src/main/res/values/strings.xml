@@ -1,0 +1,15 @@
+<resources>
+	<string name = "app_name">Many to Many Relations</string>
+	<string name = "info_create_item">Create Item</string>
+	<string name = "hint_item_name">Item Name</string>
+	<string name = "btn_add_item">Add Item</string>
+	<string name = "info_create_basket">Create Basket</string>
+	<string name = "hint_basket_name">Basket Name</string>
+	<string name = "btn_add_basket">Add Basket</string>
+	<string name = "list_card_info_id">id</string>
+	<string name = "list_card_info_name">Name</string>
+	<string name = "placeholder">PLACEHOLDER</string>
+	<string name = "header_baskets">Baskets</string>
+	<string name = "header_items">Items</string>
+	<string name = "action_filter">Filter</string>
+</resources>
