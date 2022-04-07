@@ -78,7 +78,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
 			return;
 		}
 		basketRepository.getAllBaskets().removeObserver(basketAdapter::setBasketList);
-		basketRepository.getFilteredItems(Integer.parseInt(bottomFilterText.getText().toString())).observe(this, basketAdapter::setBasketList);
+		basketRepository.getFilteredItems(Integer.parseInt(bottomFilterText.getText().toString()))
+		                .observe(this, basketAdapter::setBasketList);
 		// TODO: Implement Filter through a Mixed Object Repository
 	}
 

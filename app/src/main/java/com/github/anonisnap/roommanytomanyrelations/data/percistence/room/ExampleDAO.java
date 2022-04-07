@@ -11,7 +11,6 @@ import com.github.anonisnap.roommanytomanyrelations.data.entities.MyBasket;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItem;
 
 import java.util.List;
-import java.util.Map;
 
 @Dao
 public interface ExampleDAO {
