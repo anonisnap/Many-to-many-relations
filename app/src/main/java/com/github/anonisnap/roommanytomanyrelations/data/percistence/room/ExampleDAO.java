@@ -5,13 +5,13 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyBasket;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItem;
 
 import java.util.List;
+import java.util.Map;
 
 @Dao
 public interface ExampleDAO {
@@ -25,10 +25,10 @@ public interface ExampleDAO {
 	@Delete
 	void delete(MyItem item);
 
-	@Query("DELETE FROM item_table")
+	@Query("DELETE FROM MyItem")
 	void deleteAllItems();
 
-	@Query("SELECT * FROM item_table")
+	@Query("SELECT * FROM MyItem")
 	LiveData<List<MyItem>> getAllItems();
 
 	// Basket
@@ -41,9 +41,13 @@ public interface ExampleDAO {
 	@Delete
 	void delete(MyBasket basket);
 
-	@Query("DELETE FROM basket_table")
+	@Query("DELETE FROM MyBasket")
 	void deleteAllBaskets();
 
-	@Query("SELECT * FROM basket_table")
+	@Query("SELECT * FROM MyBasket")
 	LiveData<List<MyBasket>> getAllBaskets();
+
+//	// Basket with Items
+//	@Query("SELECT sb.*, si.*  FROM MyBasket sb JOIN MyItemBasketBinding b ON sb.basketId = b.basketId JOIN MyItem si ON si.itemId = b.itemId WHERE sb.basketId = :basketId")
+//	LiveData<Map<MyBasket, List<MyItem>>> getAllItemsInBasket(int basketId);
 }

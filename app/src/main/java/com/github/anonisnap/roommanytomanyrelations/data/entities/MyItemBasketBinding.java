@@ -4,8 +4,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity()
-public class MyItem {
+public class MyItemBasketBinding {
 	@PrimaryKey(autoGenerate = true)
+	public int bindingId;
+	public int basketId;
 	public int itemId;
-	public String itemName;
 }
