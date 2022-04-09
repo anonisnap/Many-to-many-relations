@@ -12,4 +12,5 @@
 	<string name = "header_baskets">Baskets</string>
 	<string name = "header_items">Items</string>
 	<string name = "action_filter">Filter</string>
+	<string name = "btn_add_to_basket">Add selected Items to Basket</string>
 </resources>

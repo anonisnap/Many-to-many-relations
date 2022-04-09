@@ -1,0 +1,3 @@
+If wanted, one could create a Generic Adapter for MyBasket and MyItem, using TypeParameters for differentiating between what is shown in it, and what isn't
+
+This would only really work, due to the MyItem and MyBasket objects being relatively similar, and their current Adapters being nearly identical

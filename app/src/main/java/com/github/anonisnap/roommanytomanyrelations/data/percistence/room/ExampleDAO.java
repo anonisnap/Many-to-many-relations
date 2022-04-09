@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyBasket;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItem;
+import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItemBasketBinding;
 
 import java.util.List;
 
@@ -53,4 +54,11 @@ public interface ExampleDAO {
 	// Basket with Items
 	@Query("SELECT si.* FROM MyItem si JOIN MyItemBasketBinding b ON si.itemId = b.itemId WHERE b.basketId = :basketId")
 	LiveData<List<MyItem>> getAllFilteredItems(int basketId);
+
+	// Item and Basket Bindings
+	@Insert
+	void addBinding(MyItemBasketBinding binding);
+
+	@Query("DELETE FROM MyItemBasketBinding WHERE basketId = :basketId AND itemId = :itemId")
+	void removeBinding(int basketId, int itemId);
 }

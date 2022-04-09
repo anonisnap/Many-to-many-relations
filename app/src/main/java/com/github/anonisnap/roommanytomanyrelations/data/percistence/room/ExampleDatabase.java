@@ -10,7 +10,7 @@ import com.github.anonisnap.roommanytomanyrelations.data.entities.MyBasket;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItem;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItemBasketBinding;
 
-@Database(entities = {MyItem.class, MyBasket.class, MyItemBasketBinding.class}, version = 2, exportSchema = false)
+@Database(entities = {MyItem.class, MyBasket.class, MyItemBasketBinding.class}, version = 1, exportSchema = false)
 public abstract class ExampleDatabase extends RoomDatabase {
 	private static ExampleDatabase instance;
 

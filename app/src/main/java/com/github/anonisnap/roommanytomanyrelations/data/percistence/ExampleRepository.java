@@ -1,11 +1,13 @@
 package com.github.anonisnap.roommanytomanyrelations.data.percistence;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyBasket;
 import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItem;
+import com.github.anonisnap.roommanytomanyrelations.data.entities.MyItemBasketBinding;
 import com.github.anonisnap.roommanytomanyrelations.data.percistence.room.ExampleDAO;
 import com.github.anonisnap.roommanytomanyrelations.data.percistence.room.ExampleDatabase;
 
@@ -16,6 +18,9 @@ import java.util.concurrent.Executors;
 public class ExampleRepository {
 	private static ExampleRepository instance;
 	private final Application app;
+	private BasketRepository basketRepo;
+	private ItemRepository itemRepo;
+	private ItemBasketBindingRepository bindingRepo;
 
 	private ExampleRepository(Application app) {
 		this.app = app;
@@ -26,11 +31,24 @@ public class ExampleRepository {
 	}
 
 	public ItemRepository getItemRepository() {
-		return new ItemRepository();
+		if (itemRepo == null) {
+			itemRepo = new ItemRepository();
+		}
+		return itemRepo;
 	}
 
 	public BasketRepository getBasketRepository() {
-		return new BasketRepository();
+		if (basketRepo == null) {
+			basketRepo = new BasketRepository();
+		}
+		return basketRepo;
+	}
+
+	public ItemBasketBindingRepository getBindingRepository() {
+		if (bindingRepo == null) {
+			bindingRepo = new ItemBasketBindingRepository();
+		}
+		return bindingRepo;
 	}
 
 	private static class ItemRepository implements MyItemRepository {
@@ -175,4 +193,30 @@ public class ExampleRepository {
 		}
 	}
 
+	private static class ItemBasketBindingRepository implements MyItemBasketBindingRepository {
+		private final ExampleDAO dao;
+		private final ExecutorService executorService;
+
+		public ItemBasketBindingRepository() {
+			dao = ExampleDatabase.getInstance(instance.app).exampleDAO();
+			executorService = Executors.newFixedThreadPool(2);
+		}
+
+		@Override
+		public void addBinding(int basketId, int itemId) {
+			MyItemBasketBinding binding = new MyItemBasketBinding();
+			binding.basketId = basketId;
+			binding.itemId = itemId;
+			Log.d("BINDING", "Basket: " + binding.basketId + " Item: " + binding.itemId);
+			executorService.execute(() -> {
+				dao.removeBinding(basketId, itemId);
+				dao.addBinding(binding);
+			});
+		}
+
+		@Override
+		public void removeBinding(int basketId, int itemId) {
+			executorService.execute(() -> dao.removeBinding(basketId, itemId));
+		}
+	}
 }

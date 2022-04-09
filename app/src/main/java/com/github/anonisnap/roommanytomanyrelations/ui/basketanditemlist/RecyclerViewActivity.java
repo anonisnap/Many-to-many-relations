@@ -1,4 +1,4 @@
-package com.github.anonisnap.roommanytomanyrelations.ui;
+package com.github.anonisnap.roommanytomanyrelations.ui.basketanditemlist;
 
 import android.os.Bundle;
 import android.view.View;
@@ -69,7 +69,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 		}
 		itemRepository.getAllItems().removeObserver(itemAdapter::setItemList);
 		itemRepository.getFilteredItems(Integer.parseInt(topFilterText.getText().toString())).observe(this, itemAdapter::setItemList);
-		// TODO: Implement Filter through a Mixed Object Repository
 	}
 
 	private void filterByItemId(View view) {
@@ -80,7 +79,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 		basketRepository.getAllBaskets().removeObserver(basketAdapter::setBasketList);
 		basketRepository.getFilteredItems(Integer.parseInt(bottomFilterText.getText().toString()))
 		                .observe(this, basketAdapter::setBasketList);
-		// TODO: Implement Filter through a Mixed Object Repository
 	}
 
 	private void clearFilters() {
