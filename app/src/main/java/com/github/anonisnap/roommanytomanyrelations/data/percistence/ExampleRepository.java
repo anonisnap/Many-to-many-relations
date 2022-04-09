@@ -100,7 +100,7 @@ public class ExampleRepository {
 
 		@Override
 		public LiveData<List<MyItem>> getFilteredItems(int basketId) {
-			return null; // TODO: Fix this
+			return dao.getAllFilteredItems(basketId);
 		}
 	}
 
@@ -171,7 +171,7 @@ public class ExampleRepository {
 
 		@Override
 		public LiveData<List<MyBasket>> getFilteredItems(int itemId) {
-			return null; // TODO: Implement this
+			return dao.getAllFilteredBaskets(itemId);
 		}
 	}
 

@@ -46,6 +46,7 @@ public class MyItemAdapter extends RecyclerView.Adapter<MyItemAdapter.ViewHolder
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
+
 		private final TextView txtId, txtName;
 
 		public ViewHolder(@NonNull View itemView) {

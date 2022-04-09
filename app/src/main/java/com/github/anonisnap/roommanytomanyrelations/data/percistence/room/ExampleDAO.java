@@ -30,6 +30,10 @@ public interface ExampleDAO {
 	@Query("SELECT * FROM MyItem")
 	LiveData<List<MyItem>> getAllItems();
 
+	// Item with Baskets <- I know this one is a little weird, but bear with me
+	@Query("SELECT sb.* FROM MyBasket sb JOIN MyItemBasketBinding b ON sb.basketId = b.basketId WHERE b.itemId = :itemId")
+	LiveData<List<MyBasket>> getAllFilteredBaskets(int itemId);
+
 	// Basket
 	@Insert
 	void insert(MyBasket basket);
@@ -46,7 +50,7 @@ public interface ExampleDAO {
 	@Query("SELECT * FROM MyBasket")
 	LiveData<List<MyBasket>> getAllBaskets();
 
-//	// Basket with Items
-//	@Query("SELECT sb.*, si.*  FROM MyBasket sb JOIN MyItemBasketBinding b ON sb.basketId = b.basketId JOIN MyItem si ON si.itemId = b.itemId WHERE sb.basketId = :basketId")
-//	LiveData<Map<MyBasket, List<MyItem>>> getAllItemsInBasket(int basketId);
+	// Basket with Items
+	@Query("SELECT si.* FROM MyItem si JOIN MyItemBasketBinding b ON si.itemId = b.itemId WHERE b.basketId = :basketId")
+	LiveData<List<MyItem>> getAllFilteredItems(int basketId);
 }
